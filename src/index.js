@@ -1,35 +1,8 @@
-const API_URL = 'https://animal-api-two.vercel.app/';
+import App from './App.js';
 
-const $content = document.querySelector('.content');
+const $app = document.querySelector('#app');
 
-const getData = async () => {
-  // api 호출 : fetch는 비동기 함수이므로 async와 await으로 처리
-  let response = await fetch(API_URL);
-  let template = '';
-  try {
-    // api응답이 있으면 json데이터로 파싱 (비동기 작업이 때문에 await필요)
-    if (response) {
-      let data = await response.json();
-      // console.log(data);
-
-      // 응답받은 data객체에서 photos 배열을 순회
-      data.photos.forEach((item) => {
-        console.log(item);
-        // template에 각각의 url이 담긴 img태그를 누적하여 저장
-        template += `<img src=${item.url}/>`;
-      });
-      // 모든 img태그를 .content요소의 자식 요소로 추가
-      $content.innerHTML = template;
-    }
-  } catch (error) {
-    // 에러 발생 시 콘솔에 출력
-    console.log(error);
-  }
-};
-getData();
-
-// data = {phtos:[
-//   {...},
-//   {...},
-//   {...}
-// ]}
+// App컴퍼넌트의 새로운 인스턴스(객체) 생성
+// id가 app인 dom요소를 생성자함수에 전달해서
+// App컴퍼넌트의 인스턴스가 app요소안에 ui를 표시할 수 있도록 함
+new App($app);
