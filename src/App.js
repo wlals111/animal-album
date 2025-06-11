@@ -16,7 +16,7 @@ export default function App($app) {
   // TabBar에 넘기는 props($app, initialStatem onClick)
   const tabBar = new TabBar({
     $app,
-    // initialState : 초기의 탭바 상태
+    // initialState : TabBar컴퍼넌트의 초기 상태
     initialState: '',
     // onClick : 탭바를 클릭했을 때 실행할 함수(상태 갱신 + api요청)
     // name : 클릭된 tab의 이름
@@ -25,15 +25,21 @@ export default function App($app) {
         ...this.state,
         // 현재 눌린탭으로 이름을 바꿈
         currentTab: name,
+
         // api는 비동기로 처리해야 하므로 async/await으로 처리
         // api를 요청해서 응답결과를 상태로 저장
-        photos: await request(name),
+        // name이 all이면 빈 문자열을 전달, all이 아니면 기존의 name 전달
+        photos: await request(name === 'all' ? '' : name),
       });
     },
   });
 
-  // Content에 넘기는 props(...)
-  const content = new Content();
+  // Content에 넘기는 props($app, initialState)
+  const content = new Content({
+    $app,
+    // content컴퍼넌트의 초기상태
+    initialState: [],
+  });
 
   // 상태들을 업데이트
   this.setState = (newState) => {
