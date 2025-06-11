@@ -35,6 +35,7 @@ export default function TabBar({ $app, initialState, onClick }) {
     console.log($tabBar);
     $tabBar.forEach((item) => {
       // 요소들을 클릭했을 때 onClick함수가 실행됨
+      // 각각의 탭 바에 클릭 이벤트를 불여줌
       item.addEventListener('click', () => {
         onClick(item.id);
       });
