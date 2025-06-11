@@ -32,7 +32,7 @@ export default function TabBar({ $app, initialState, onClick }) {
 
     // 클래스가 tab-bar인 div 내부의 모든 div요소들을 가져옴
     let $tabBar = this.$target.querySelectorAll('div');
-    console.log($tabBar);
+    // console.log($tabBar);
     $tabBar.forEach((item) => {
       // 요소들을 클릭했을 때 onClick함수가 실행됨
       // 각각의 탭 바에 클릭 이벤트를 불여줌
@@ -47,4 +47,6 @@ export default function TabBar({ $app, initialState, onClick }) {
     // 상태 업데이트 후 렌더링
     this.render();
   };
+
+  this.render();
 }
